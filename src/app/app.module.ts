@@ -9,6 +9,7 @@ import { PositionsComponent } from './positions/positions.component';
 import { StatementComponent } from './statement/statement.component';
 import { RegisterComponent } from './register/register.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

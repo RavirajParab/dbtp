@@ -1,1 +1,28 @@
-<p>login works!</p>
+<!-- main app container -->
+<div class="ml-3 mr-3" style="max-width: 400px;">
+    <h2>Login</h2>
+    <hr />
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" class="form-control" name="Email" [(ngModel)]="model.Email" #email="ngModel"
+                [ngClass]="{ 'is-invalid': Email.dirty && Email.invalid }" required email />
+            <div *ngIf="Email.dirty && Email.invalid" class="invalid-feedback">
+                <div *ngIf="Email.errors.required">Email is required</div>
+                <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" name="Password" [(ngModel)]="model.Password" #password="ngModel"
+                [ngClass]="{ 'is-invalid': Password.dirty && Password.invalid }" required minlength="8" />
+            <div *ngIf="Password.dirty && Password.invalid" class="invalid-feedback">
+                <div *ngIf="Password.errors.required">Password is required</div>
+                <div *ngIf="Password.errors.minlength">Password must be at least 8 characters</div>
+            </div>
+        </div>
+        <div class="form-group mt-2">
+            <button class="btn btn-primary float-right mr-1">Login</button>
+        </div>
+    </form>
+</div>

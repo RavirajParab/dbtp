@@ -10,9 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   //define the variables 
   registrationForm: FormGroup;
-  loading = false;
-  submitted = false;
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -21,7 +19,7 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group({
-      Username: ['', Validators.required],
+      Username: ['', [Validators.required, Validators.minLength(3)]],
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', [Validators.required, Validators.minLength(8)]]
   });
@@ -32,6 +30,6 @@ export class RegisterComponent implements OnInit {
 
   // on submit
   register(){
-
+      console.log(this.registrationForm.value);
   }
 }
