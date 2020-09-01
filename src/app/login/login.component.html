@@ -2,7 +2,7 @@
 <div class="ml-3 mr-3" style="max-width: 400px;">
     <h2>Login</h2>
     <hr />
-    <form name="form" (submit)="login()" #f="ngForm">
+    <form name="form" #f="ngForm" (submit)="login()">
         <div class="form-group">
             <label for="Email">Email</label>
             <input type="Email" class="form-control" name="Email" [(ngModel)]="model.Email" 
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="form-group mt-2">
-            <button class="btn btn-warning float-right" (click)="f.reset()">
+            <button type="button" class="btn btn-warning float-right" (click)="f.form.reset()">
                 Reset
             </button>
             <button type="submit" class="btn btn-primary float-right mr-1" [disabled]="f.form.invalid">Login</button>
