@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyComponent implements OnInit {
 
+
+  model: any = {};
+
+  buy() {
+    console.log(this.model);
+  }
   constructor() { }
 
   ngOnInit(): void {
