@@ -8,6 +8,7 @@ import { BuyComponent } from './buy/buy.component';
 import { PositionsComponent } from './positions/positions.component';
 import { StatementComponent } from './statement/statement.component';
 import { RegisterComponent } from './register/register.component';
+import { MyModalComponent } from './my-modal/my-modal.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RegisterComponent } from './register/register.component';
     BuyComponent,
     PositionsComponent,
     StatementComponent,
-    RegisterComponent
+    RegisterComponent,
+    MyModalComponent
   ],
   imports: [
     BrowserModule,

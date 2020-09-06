@@ -17,7 +17,13 @@
         <tbody>
             <tr>
                 <th scope="row">1</th>
-                <td>ITC</td>
+                <td data-toggle="modal" data-target="#ITC">ITC
+                    <app-my-modal m-id="ITC" m-title="ITC">
+                        Close position in ITC? <br/>
+                        <button class="btn btn-success mt-2 mr-2 ml-5">Yes</button>
+                        <button class="btn btn-danger mt-2" data-dismiss="modal">No</button>
+                    </app-my-modal>
+                </td>
                 <td>34</td>
                 <td class="text-success">+567.78</td>
             </tr>
