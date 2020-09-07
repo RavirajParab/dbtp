@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -25,7 +26,8 @@ import { MyModalComponent } from './my-modal/my-modal.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule, //for template-drive forms
-    ReactiveFormsModule //for the reactive forms
+    ReactiveFormsModule, //for the reactive forms
+    HttpClientModule //for the HTTP operations
   ],
   providers: [],
   bootstrap: [AppComponent]

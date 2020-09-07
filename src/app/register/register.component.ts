@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {DptpUtilityService} from '../dptp-utility.service';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private utility : DptpUtilityService
   ) { }
 
   
@@ -31,5 +33,12 @@ export class RegisterComponent implements OnInit {
   // on submit
   register(){
       console.log(this.registrationForm.value);
+      //submit the values to the server
+      this.utility.RegisterUser(this.registrationForm.value)
+                  .subscribe(res=>{
+                    console.log(res)
+                  },(err)=>{
+                    console.log(`Error occured in register ${err.message}`)
+                  });
   }
 }
