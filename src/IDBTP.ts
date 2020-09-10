@@ -1,5 +1,13 @@
 export interface User{
-    username : string,
-    email: string,
-    password: string
+    Username : string,
+    Email: string,
+    Password: string
+}
+
+export interface Position{
+    Symbol: string,
+    Quantity : number,
+    Open: boolean,
+    PL : number,
+    id?: number
 }

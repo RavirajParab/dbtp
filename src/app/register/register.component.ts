@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
 
   // on submit
   register(){
+      /*
       console.log(this.registrationForm.value);
       //submit the values to the server
       this.utility.RegisterUser(this.registrationForm.value)
@@ -40,5 +41,17 @@ export class RegisterComponent implements OnInit {
                   },(err)=>{
                     console.log(`Error occured in register ${err.message}`)
                   });
+                  */
+
+                  this.utility.getSecurities()
+                  .subscribe(res=>{
+                    console.log(res)
+                  },(err)=>{
+                    console.log(`Error occured in register ${err.message}`)
+                  });
+                   
+                            
   }
+
+  
 }
