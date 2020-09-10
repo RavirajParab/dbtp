@@ -10,6 +10,7 @@ import { PositionsComponent } from './positions/positions.component';
 import { StatementComponent } from './statement/statement.component';
 import { RegisterComponent } from './register/register.component';
 import { MyModalComponent } from './my-modal/my-modal.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MyModalComponent } from './my-modal/my-modal.component';
     PositionsComponent,
     StatementComponent,
     RegisterComponent,
-    MyModalComponent
+    MyModalComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

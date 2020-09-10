@@ -1,7 +1,8 @@
 export interface User{
     Username : string,
     Email: string,
-    Password: string
+    Password: string,
+    id?:number //optional
 }
 
 export interface Position{
@@ -9,5 +10,5 @@ export interface Position{
     Quantity : number,
     Open: boolean,
     PL : number,
-    id?: number
+    id?: number //optional
 }

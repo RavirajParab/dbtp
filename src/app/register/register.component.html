@@ -1,4 +1,7 @@
 <div class="ml-3 mr-3" style="max-width: 400px;">
+    <!--toast starts here-->
+    <app-alert [message]="AlertMessage"></app-alert>
+    <!--tost ends here-->
     <h2>Register</h2>
     <hr />
     <form [formGroup]="registrationForm" (submit)="register()">

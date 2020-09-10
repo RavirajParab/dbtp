@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {DptpUtilityService} from '../dptp-utility.service';
+import { User } from 'src/IDBTP';
+import {flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +13,7 @@ import {DptpUtilityService} from '../dptp-utility.service';
 export class RegisterComponent implements OnInit {
   //define the variables 
   registrationForm: FormGroup;
+  AlertMessage : string;
   
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +28,8 @@ export class RegisterComponent implements OnInit {
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', [Validators.required, Validators.minLength(8)]]
   });
+
+       
   }
   
   // convenience getter for easy access to form fields
@@ -32,25 +37,34 @@ export class RegisterComponent implements OnInit {
 
   // on submit
   register(){
-      /*
-      console.log(this.registrationForm.value);
+      
+      const userDetails: User=this.registrationForm.value;
+      this.utility.userExists(userDetails.Username,userDetails.Email)
+                  .pipe(
+                    flatMap((userExists)=>{
+                      if(!userExists){
+                        return this.utility.registerUser(userDetails);
+                      }else{
+                        throw new Error("User already exists!");
+                      }
+                    })
+                  ).subscribe(user=>{
+                      console.log(user);
+                  },err=>{
+                     this.AlertMessage=err.message;
+                     console.log(err.message);
+                  });
+      
       //submit the values to the server
-      this.utility.RegisterUser(this.registrationForm.value)
+      /*
+      this.utility.registerUser(this.registrationForm.value)
                   .subscribe(res=>{
                     console.log(res)
                   },(err)=>{
                     console.log(`Error occured in register ${err.message}`)
                   });
-                  */
-
-                  this.utility.getSecurities()
-                  .subscribe(res=>{
-                    console.log(res)
-                  },(err)=>{
-                    console.log(`Error occured in register ${err.message}`)
-                  });
-                   
-                            
+      */
+                                       
   }
 
   

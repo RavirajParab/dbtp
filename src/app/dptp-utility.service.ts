@@ -18,9 +18,9 @@ export class DptpUtilityService {
   }
 
   // get the user details using the userName: GET
-  userExists(username: string): Observable<boolean>{
+  userExists(username: string,email: string): Observable<boolean>{
     return this.myHttpClient
-               .get(`https://mycrudops.herokuapp.com/users?Username=${username}`)
+               .get(`https://mycrudops.herokuapp.com/users?Username=${username}&Email=${email}`)
                .pipe(map((data: Array<any>)=> data.length?true:false));
   }
 
