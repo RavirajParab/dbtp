@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as bootstrap from '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
 
 @Component({
   selector: 'app-alert',
@@ -12,7 +11,8 @@ export class AlertComponent implements OnInit {
   constructor() { }
   showToast(){
     const MyToastElement = document.getElementById('mytoast');
-    const MyToast = new bootstrap.Toast(MyToastElement,{ 'animation': true, 'autohide': true, 'delay': 10000 });
+    //@ts-ignore
+    const MyToast = new bootstrap.Toast(MyToastElement,{ 'animation': true, 'autohide': true, 'delay': 4000 });
     MyToast.show();
   }
   

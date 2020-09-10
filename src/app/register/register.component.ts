@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {DptpUtilityService} from '../dptp-utility.service';
 import { User } from 'src/IDBTP';
-import {flatMap} from 'rxjs/operators';
+import {flatMap, delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -47,12 +47,16 @@ export class RegisterComponent implements OnInit {
                       }else{
                         throw new Error("User already exists!");
                       }
-                    })
+                    }),
                   ).subscribe(user=>{
-                      console.log(user);
+                     this.AlertMessage="Fantastic!!! you have been registered. Taking you to the login";
+                     //navigate the user after 2100ms
+                     setTimeout(()=>{
+                      this.router.navigate(['/login']);
+                     },4000)
                   },err=>{
                      this.AlertMessage=err.message;
-                     console.log(err.message);
+                     this.AlertMessage="If you have already registered,please click in Login button!";
                   });
       
       //submit the values to the server
