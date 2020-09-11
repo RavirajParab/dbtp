@@ -2,6 +2,9 @@
 <div class="ml-3 mr-3" style="max-width: 400px;">
     <h2>Login</h2>
     <hr />
+    <!--toast starts here-->
+    <app-alert [message]="AlertMessage"></app-alert>
+    <!--tost ends here-->
     <form name="form" #f="ngForm" (submit)="login()">
         <div class="form-group mt-2">
             <label for="Email">Email</label>

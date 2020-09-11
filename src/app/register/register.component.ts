@@ -39,13 +39,13 @@ export class RegisterComponent implements OnInit {
   register(){
       
       const userDetails: User=this.registrationForm.value;
-      this.utility.userExists(userDetails.Username,userDetails.Email)
+      this.utility.userExists(userDetails)
                   .pipe(
                     flatMap((userExists)=>{
                       if(!userExists){
                         return this.utility.registerUser(userDetails);
                       }else{
-                        throw new Error("User already exists!");
+                        throw new Error("User already exists! If you have already registered, click login button");
                       }
                     }),
                   ).subscribe(user=>{
@@ -56,7 +56,6 @@ export class RegisterComponent implements OnInit {
                      },4000)
                   },err=>{
                      this.AlertMessage=err.message;
-                     this.AlertMessage="If you have already registered,please click in Login button!";
                   });
       
       //submit the values to the server

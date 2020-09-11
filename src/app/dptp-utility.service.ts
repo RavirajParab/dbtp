@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class DptpUtilityService {
-  
+   currentLoggedInUser :string;
   constructor(private myHttpClient:HttpClient) { }
   //registration : POST
   registerUser(user: User): Observable<{}>{
@@ -18,17 +18,25 @@ export class DptpUtilityService {
   }
 
   // get the user details using the userName: GET
-  userExists(username: string,email: string): Observable<boolean>{
+  userExists(user:User): Observable<boolean>{
     return this.myHttpClient
-               .get(`https://mycrudops.herokuapp.com/users?Username=${username}&Email=${email}`)
+               .get(`https://mycrudops.herokuapp.com/users?Username=${user.Username}&Email=${user.Email}`)
                .pipe(map((data: Array<any>)=> data.length?true:false));
   }
 
   //Takes in an object which as an Email and a Password : GET
-  aunthenticateUser(user: {Email,Password}):Observable<boolean>{
+  authenticateUser(user: User):Observable<boolean>{
     return this.myHttpClient
                .get(`https://mycrudops.herokuapp.com/users?Email=${user.Email}&Password=${user.Password}`)
-               .pipe(map((data: Array<any>)=>data.length?true:false));
+               .pipe(map((data: Array<User>)=>{
+                   if(data.length){
+                      this.currentLoggedInUser = data[0].Username;
+                      console.log(this.currentLoggedInUser);
+                      return true;
+                   }else{
+                     return false;
+                   }
+               }));
   }
 
   // get the securities/symbols
