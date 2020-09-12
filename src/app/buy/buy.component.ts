@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DptpUtilityService } from '../dptp-utility.service';
+import {Position} from '../../IDBTP';
 
 @Component({
   selector: 'app-buy',
@@ -17,7 +18,6 @@ export class BuyComponent implements OnInit {
     const formData=this.model;
     // create a the position using the form data
     const position: Position ={
-      //@ts-ignore
       Symbol: formData.Symbol.split(',')[0],
       BP: Number(formData.Symbol.split(',')[1]),
       Quantity : formData.Quantity,
@@ -25,8 +25,13 @@ export class BuyComponent implements OnInit {
       PL : 0,
     }
 
-    //post the position
-    
+    // add the position
+    this.utility.addPosition(position)
+                .subscribe(()=>{
+                  this.AlertMessage=`Order ${position.Symbol} qty:${position.Quantity} executed!`;
+                },err=>{
+                  this.AlertMessage=err.message;
+                });       
     
   }
   constructor(private utility:DptpUtilityService) { }
