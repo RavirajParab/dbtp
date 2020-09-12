@@ -15,17 +15,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td data-toggle="modal" data-target="#ITC">ITC
-                    <app-my-modal m-id="ITC" m-title="ITC">
-                        Close position in ITC? <br/>
+            <tr *ngFor="let pos of Positions">
+                <th scope="row">{{pos.ID}}</th>
+                <td data-toggle="modal" [attr.data-target]="'#' + pos.Symbol">{{pos.Symbol}} 
+                    <app-my-modal [m-id]="pos.Symbol" [m-title]="pos.Symbol">
+                        Close position in {{pos.Symbol}}? <br/>
                         <button class="btn btn-success mt-2 mr-2 ml-5">Yes</button>
                         <button class="btn btn-danger mt-2" data-dismiss="modal">No</button>
                     </app-my-modal>
                 </td>
-                <td>34</td>
-                <td class="text-success">+567.78</td>
+                <td>{{pos.Quantity}}</td>
+                <td>{{pos.PL}}</td>
             </tr>
         </tbody>
     </table>
