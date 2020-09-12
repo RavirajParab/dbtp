@@ -8,6 +8,8 @@ export interface User{
 export interface Position{
     Symbol: string,
     Quantity : number,
+    BP: number,
+    SP?: number,
     Open: boolean,
     PL : number,
     id?: number //optional
