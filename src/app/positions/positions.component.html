@@ -1,6 +1,9 @@
 <div class="ml-3 mr-3" style="max-width: 400px;">
     <h2>Positions</h2>
     <hr />
+    <!--toast starts here-->
+    <app-alert [message]="AlertMessage"></app-alert>
+    <!--tost ends here-->
     <div class="col-md-12">
         <button class="btn btn-warning float-right">Refresh</button>
     </div>
@@ -16,11 +19,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let pos of Positions">
-                <th scope="row">{{pos.ID}}</th>
+                <th scope="row">{{pos.id}}</th>
                 <td data-toggle="modal" [attr.data-target]="'#' + pos.Symbol">{{pos.Symbol}} 
                     <app-my-modal [m-id]="pos.Symbol" [m-title]="pos.Symbol">
                         Close position in {{pos.Symbol}}? <br/>
-                        <button class="btn btn-success mt-2 mr-2 ml-5">Yes</button>
+                        <button (click)="closePosition(pos)" data-dismiss="modal" class="btn btn-success mt-2 mr-2 ml-5">Yes</button>
                         <button class="btn btn-danger mt-2" data-dismiss="modal">No</button>
                     </app-my-modal>
                 </td>

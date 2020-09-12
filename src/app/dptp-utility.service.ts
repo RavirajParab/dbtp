@@ -46,9 +46,9 @@ export class DptpUtilityService {
   }
 
   //gets the positions : GET
-  getPositions ():Observable<{}>{
+  getPositions (status=true):Observable<{}>{
     return this.myHttpClient
-               .get('https://mycrudops.herokuapp.com/positions');
+               .get(`https://mycrudops.herokuapp.com/positions?Open=${status}`);
   }
 
   //add position : POST

@@ -12,9 +12,31 @@ export class PositionsComponent implements OnInit {
 
   constructor(private utility:DptpUtilityService) { }
   Positions: Array<Position>=[];
+  AlertMessage : string;
 
   // on position close click
-  
+  closePosition(position:Position){
+    let positionToBeClosed = position;
+    positionToBeClosed.Open=false;
+    // evaluate NPL
+    if(position.PL>0){
+      // put 10.005% tax on Profit
+      positionToBeClosed.PL = 0.89995*positionToBeClosed.PL;
+    }
+   
+    
+    // update the position in the table
+    this.utility.updatePosition(positionToBeClosed)
+                .subscribe(()=>{
+                    this.AlertMessage=`${positionToBeClosed.Symbol} is squarred off!`;
+                    // then remove the item from the positions array
+                    this.Positions=this.Positions.filter(i=>i.id!==positionToBeClosed.id);
+                },err=>{
+                    this.AlertMessage= err.message;
+                });
+                
+  }
+
 
   ngOnInit(): void {
     //make a call for the positions
@@ -28,13 +50,14 @@ export class PositionsComponent implements OnInit {
         return {
           Symbol : i.Symbol,
           Quantity: i.Quantity,
-          ID : i.id,
+          id : i.id,
+          Open: true,
           PL : (i.BP - result[0].find(x=>x.Symbol==i.Symbol).Price)*i.Quantity
         }
       });
      // set the positions
      this.Positions=positionsWithPL;
-     console.log(this.Positions);
+   
     },err=>{
       console.log(err);
     })
