@@ -55,6 +55,7 @@ export class PositionsComponent implements OnInit {
         return {
           Symbol : i.Symbol,
           Quantity: i.Quantity,
+          Username: i.Username,
           id : i.id,
           Open: true,
           PL : (i.BP - result[0].find(x=>x.Symbol==i.Symbol).Price)*i.Quantity

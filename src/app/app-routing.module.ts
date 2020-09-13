@@ -5,11 +5,12 @@ import { StatementComponent } from './statement/statement.component';
 import { PositionsComponent } from './positions/positions.component';
 import { BuyComponent } from './buy/buy.component';
 import { RegisterComponent } from './register/register.component';
+import {GuardService} from './guard.service';
 
 
 const routes: Routes = [
   { path: 'buy', component: BuyComponent },
-  { path: 'positions', component: PositionsComponent },
+  { path: 'positions', component: PositionsComponent, canActivate:[GuardService] },
   { path: 'statement', component: StatementComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
