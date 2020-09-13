@@ -12,5 +12,6 @@ export interface Position{
     SP?: number,
     Open: boolean,
     PL : number,
+    Username? : string,
     id?: number //optional
 }

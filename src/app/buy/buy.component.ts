@@ -22,6 +22,7 @@ export class BuyComponent implements OnInit {
       BP: Number(formData.Symbol.split(',')[1]),
       Quantity : formData.Quantity,
       Open: true,
+      Username: this.utility.currentLoggedInUser,
       PL : 0,
     }
 
