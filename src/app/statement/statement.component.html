@@ -2,8 +2,8 @@
     <h2>Statement</h2>
     <hr />
     <div class="col-md-12">
-        <button class="btn btn-warning float-right">Export</button>
-        <h4 class="text-danger float-right mr-3">-367.78</h4>
+        <button class="btn btn-warning float-right" (click)="export()">Export</button>
+        <h4 class="float-right mr-3">{{TotalPL}}</h4>
     </div>
 
     <table class="table table-striped table-light">
@@ -16,11 +16,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>ITC</td>
-                <td>34</td>
-                <td class="text-danger">-367.78</td>
+            <tr *ngFor="let pos of Positions">
+                <th scope="row">{{pos.id}}</th>
+                <td>{{pos.Symbol}}</td>
+                <td>{{pos.Quantity}}</td>
+                <td>{{pos.PL}}</td>
             </tr>
         </tbody>
     </table>

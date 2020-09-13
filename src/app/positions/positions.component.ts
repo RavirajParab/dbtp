@@ -37,6 +37,11 @@ export class PositionsComponent implements OnInit {
                 
   }
 
+  //rferesh positions to check new PL
+  refreshPositions(){
+    // can be done without a hard refresh
+    location.reload();
+  }
 
   ngOnInit(): void {
     //make a call for the positions
